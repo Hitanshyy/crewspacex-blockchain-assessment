@@ -4,7 +4,7 @@ This is a project for blockchain developers. Candidates fix bugs and add missing
 
 ## Assessment Details
 
-- **Duration**: 4 hours from the time you receive invitation from GitHub.
+- **Duration**: 12 hours from the time you receive invitation from GitHub.
 
 - **Format**: Take-home project
 
@@ -29,29 +29,29 @@ A single `npm run dev` starts both the backend and the frontend. Backend runs at
 
 ## Assessment tasks (for candidates)
 
-1. **Backend – Wallet API**  
+The assessment includes: the wallet API returns a non-JSON-serializable balance so the Wallet section fails at runtime when fetching balance; the contract balance endpoint returns a non-JSON-serializable value so the Contract section fails at runtime when fetching balance; the chain blocks endpoint returns the first N blocks instead of the latest N, so the Chain section shows the wrong blocks until the route is fixed and the frontend passes the limit.
+
+1. **Backend - Wallet API**  
    Fix the response so the frontend can display the wallet balance.
 
-2. **Backend – Contract balance**  
+2. **Backend - Contract balance**  
    The TokenVault `balanceOf` result includes a non-JSON-serializable value. Return the contract balance in a JSON-safe format.
 
-3. **Backend – Withdraw access control**  
+3. **Backend - Withdraw access control**  
    In `TokenVault.withdraw`, ensure only the contract owner can call withdraw. Return a clear error for unauthorized callers.
 
-4. **Backend – Chain blocks**  
+4. **Backend - Chain blocks**  
    `GET /api/chain/blocks?limit=N` should return the **latest** N blocks (e.g. last 5), not the first N. Fix the route logic.
 
-5. **Backend – Error handling**  
+5. **Backend - Error handling**  
    Add a global Express error handler that responds with `{ error: message }` and status 500 for unhandled errors.
 
-6. **Frontend – Wallet display**  
+6. **Frontend - Wallet display**  
    The wallet balance from the API may be a string or number. Ensure the Wallet section always displays the balance correctly (no `[object Object]` or serialization issues).
 
-7. **Frontend – Chain section**  
+7. **Frontend - Chain section**  
    When fetching “latest blocks”, pass the `limit` (e.g. 5) to the API so the backend returns the correct slice. Use the existing `limit` variable in the component.
 
-8. **Optional**  
-   Add a simple loading or error state improvement, or a unit test for one contract function.
 
 
 Candidates should fix the above so that:
