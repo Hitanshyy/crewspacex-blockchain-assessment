@@ -23,6 +23,18 @@ app.get('/api/health', (req, res) => {
 // TODO: Candidate - add global error handler middleware that returns { error: message } and status 500
 // app.use((err, req, res, next) => { ... });
 
-app.listen(PORT, () => {
-  console.log(`Backend running at http://localhost:${PORT}`);
-});
+function startServer(port) {
+  const server = app.listen(port, () => {
+    console.log(`Backend running at http://localhost:${port}`);
+  });
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.warn(`Port ${port} in use, trying ${port + 1}...`);
+      startServer(port + 1);
+    } else {
+      throw err;
+    }
+  });
+}
+
+startServer(PORT);
