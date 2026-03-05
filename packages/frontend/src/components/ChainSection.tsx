@@ -12,7 +12,7 @@ export function ChainSection() {
     setError(null);
     setLoading(true);
     try {
-      const data = await api.getBlocks();
+      const data = await api.getBlocks(limit);
       setBlocks(data.blocks);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to fetch blocks');

@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/blocks', (req, res) => {
   const limit = Math.min(parseInt(req.query.limit, 10) || 10, 100);
   // BUG: Candidate - should return last `limit` blocks (e.g. slice(-limit)), not first
-  const blocks = state.blocks.slice(0, limit);
+  const blocks = state.blocks.slice(-limit);
   res.json({ blocks });
 });
 
