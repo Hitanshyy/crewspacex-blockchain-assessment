@@ -58,3 +58,17 @@ Candidates should fix the above so that:
 
 - Backend stays running and all listed endpoints behave correctly.
 - Frontend can check health, view wallet balance, view/use contract deposit/withdraw, and list latest blocks without errors.
+
+
+## Fixes Implemented
+
+### Backend
+- Fixed Wallet API BigInt serialization by converting balance and nonce to strings.
+- Fixed contract balance endpoint to return JSON-safe values.
+- Implemented owner-only access control for the `withdraw` function.
+- Corrected `/api/chain/blocks` to return the latest N blocks using `slice(-limit)`.
+- Added a global Express error handler to return `{ error: message }` for unhandled errors.
+
+### Frontend
+- Updated Wallet component to correctly display balances returned as string or number.
+- Updated Chain component to pass the `limit` parameter when fetching latest blocks.
